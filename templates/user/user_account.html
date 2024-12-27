@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.photo %}
+    <img src="/media/{{user.photo}}" class="img_account" alt="...">
+    {% endif %}
+    <h1>{{user.username}}</h1>
+    <h2>{{user.first_name}} {{user.last_name}}</h2>
+    <h4>{{user.bio}}</h4>
+
+    {% for post in user.posts %}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            {% if post.photo %}
+            <img src="/media/{{post.photo}}" class="card-img-top" alt="...">
+            {% endif %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{post.content}}</li>
+                <li class="list-group-item">{{post.created_at}}</li>
+                <li class="list-group-item"><a href="/post-detail/{{post.id}}" class="btn btn-secondary">Детальніше</a></li>
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

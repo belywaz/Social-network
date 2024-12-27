@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to the Social Network</h1>
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                {% if post.photo %}
+                <img src="/media/{{post.photo}}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"><a href="{% url 'user-account' post.creater.id %}" class="btn btn-light">{{post.creater}}</a></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{post.content}}</li>
+                    <li class="list-group-item">{{post.created_at}}</li>
+                    <li class="list-group-item"><a href="/post-detail/{{post.id}}" class="btn btn-secondary">Детальніше</a></li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

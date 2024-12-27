@@ -1,0 +1,16 @@
+body {
+    background-color: red;
+}
+
+footer {
+    text-align: center;
+}
+
+.footer {
+    font-size: 13px;
+    text-align: center;
+}
+
+.img_account {
+    width: 150px;
+}
