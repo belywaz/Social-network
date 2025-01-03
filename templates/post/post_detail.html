@@ -17,4 +17,24 @@
     </div>
     <a href="{% url 'post-update' post.id %}" class="btn btn-warning">Редагувати</a>
     <a href="{% url 'post-delete' post.id %}" class="btn btn-danger">Видалити</a>
+    <div>
+        <a href="{% url 'coment-create' post.id %}" class="btn btn-info">Додати коментар</a>
+    </div>
+
+    <div>
+        {% if post.post_coments.all %}
+        {% for coment in post.post_coments.all %}
+            <div class="alert alert-success" role="alert">
+                <h5 class="alert-heading">{{coment.creater}}</h5>
+                <p>{{coment.content}}</p>
+                <hr>
+                <p class="mb-0">{{coment.created_at}}</p>
+            </div>
+        {% endfor %}
+        {% else %}
+            <div class="alert alert-light" role="alert">
+                <h6>Поки що коментарів не має</h6>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

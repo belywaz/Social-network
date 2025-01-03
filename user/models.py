@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class User(AbstractUser):
     photo = models.ImageField(upload_to="avatars", blank=True, null=True)
-    bio = models.CharField(max_length=600)
+    bio = models.CharField(max_length=600, blank=True, null=True)
 
 class Subscribe(models.Model):
     subscriber = models.ForeignKey(User, on_delete=models.CASCADE, related_name="subscribing")

@@ -7,10 +7,13 @@
     <h1>{{user.username}}</h1>
     <h2>{{user.first_name}} {{user.last_name}}</h2>
     <h4>{{user.bio}}</h4>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="{% url 'user-update' user.id %}" class="btn btn-warning">Редагувати профіль</a>
 
-    {% for post in user.posts %}
+    {% for post in user.posts.all %}
     <div class="col">
-        <div class="card" style="width: 18rem;">
+        <div class="card"       style="width: 18rem;">
             {% if post.photo %}
             <img src="/media/{{post.photo}}" class="card-img-top" alt="...">
             {% endif %}

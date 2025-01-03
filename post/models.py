@@ -12,11 +12,14 @@ class Post(models.Model):
         return self.content
 
 class Like(models.Model):
-    liker = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liking")
-    liking = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liker")
+    creater = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liking")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="post_likes")
 
 class Coment(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="send_coment")
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="receive_ccoment")
+    creater = models.ForeignKey(User, on_delete=models.CASCADE, related_name="send_coment")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="post_coments")
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
+
+    def __str__(self):
+        return f"{self.content} ({self.id})"
