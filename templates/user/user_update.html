@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Оновлення аккаунта</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Оновити</button>
+        <a href="{% url 'user-account' user.id %}" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
+{% endblock %}

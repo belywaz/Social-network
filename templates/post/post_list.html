@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to the Social Network</h1>
+    <div class="row g-3">
+        {% for post in posts %}
+        <div class="col-3">
+            <div class="card">
+                {% if post.photo %}
+                <img src="/media/{{post.photo}}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"><a href="{% url 'user-account' post.creater.id %}" class="btn btn-light">{{post.creater}}</a></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% if post.post_likes.all %}
+                        {% if post.is_liked %}
+                            <div>
+                                <a class="list-group-item" href="{% url 'like-create' post.id %}">
+                                    <img src="https://cdn-icons-png.flaticon.com/256/2107/2107845.png" alt="" width="20"> {{ post.post_likes.count }}
+                                </a>
+                            </div>
+                        {% else %}
+                            <div>
+                                <a class="list-group-item" href="{% url 'like-create' post.id %}">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/58/58746.png" alt="" width="20"> {{ post.post_likes.count }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div>
+                            <a class="list-group-item" href="{% url 'like-create' post.id %}">
+                                <img src="https://cdn-icons-png.flaticon.com/512/58/58746.png" alt="" width="20"> 0
+                            </a>
+                        </div>
+                    {% endif %}
+                    <li class="list-group-item">{{post.content}}</li>
+                    <li class="list-group-item">{{post.created_at}}</li>
+                    <li class="list-group-item"><a href="/post-detail/{{post.id}}" class="btn btn-secondary">Детальніше</a></li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

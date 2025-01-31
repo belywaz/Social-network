@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card" style="">
+        {% if post.photo %}
+        <img src="/media/{{post.photo}}" class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"><a href="{% url 'user-account' post.creater.id %}" class="btn btn-light">{{post.creater}}</a></p>
+        </div>
+        <ul class="list-group list-group-flush">
+        {% if post.post_likes.all %}
+            {% if is_liked %}
+                <div>
+                    <a class="list-group-item" href="{% url 'like-create' post.id %}">
+                        <img src="https://cdn-icons-png.flaticon.com/256/2107/2107845.png" alt="" width="20"> {{ post.post_likes.count }}
+                    </a>
+                </div>
+            {% else %}
+                <div>
+                    <a class="list-group-item" href="{% url 'like-create' post.id %}">
+                        <img src="https://cdn-icons-png.flaticon.com/512/58/58746.png" alt="" width="20"> {{ post.post_likes.count }}
+                    </a>
+                </div>
+            {% endif %}
+        {% else %}
+            <div>
+                <a class="list-group-item" href="{% url 'like-create' post.id %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/58/58746.png" alt="" width="20"> 0
+                </a>
+            </div>
+        {% endif %}
+            <li class="list-group-item">{{post.content}}</li>
+            <li class="list-group-item">{{post.created_at}}</li>
+        </ul>
+    </div>
+    <div>
+        <a href="/" class="btn btn-secondary otdel">Назад</a>
+    </div>
+    {% if post.creater == request.user %}
+    <div class="otdel">
+        <a href="{% url 'post-update' post.id %}" class="btn btn-warning">Редагувати</a>
+        <a href="{% url 'post-delete' post.id %}" class="btn btn-danger otdel">Видалити</a>
+    </div>
+    {% endif %}
+    <div class="otdel">
+        <a href="{% url 'coment-create' post.id %}" class="btn btn-info otdel_com">Додати коментар</a>
+    </div>
+
+    <div>
+        {% if post.post_coments.all %}
+        {% for coment in post.post_coments.all %}
+            <div class="alert alert-success" role="alert">
+                <h5 class="alert-heading">{{coment.creater}}</h5>
+                <p>{{coment.content}}</p>
+                <hr>
+                <p class="mb-0">{{coment.created_at}}</p>
+                {% if coment.creater == request.user %}
+                <a href="{% url 'coment-update' coment.id %}" class="btn btn-light">Редагувати</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% else %}
+            <div class="alert alert-light" role="alert">
+                <h6>Поки що коментарів не має</h6>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

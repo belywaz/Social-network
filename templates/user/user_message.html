@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+              <div class="container-fluid">
+                <a class="navbar-brand img_account_mes">
+                    <img src="/media/{{chat_user.photo }}" alt="" class="rounded-circle" style="width: 50px; height: 50px; margin-right: 10px;">
+                </a>
+                <a class="navbar-brand" href="#">{{ chat_user.username }}</a>
+              </div>
+            </nav>
+          </div>
+    </header>
+    {% for message in messages %}
+        <div class="{% if message.is_own %}message-right{% else %}message-left{% endif %}">
+            {% if not message.is_own %}
+                <a href="{% url 'user-account' message.sender.id %}">{{ message.sender }}</a>
+            {% endif %}
+            {{ message.content }}
+        </div>
+    {% endfor %}
+    <div class="input-group mb-3">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="content" class="form-control" placeholder="Message" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <button type="submit"><img src="https://static.thenounproject.com/png/3553333-200.png" alt="" width="30"></button>
+            <!-- <span class="input-group-text" id="basic-addon2">
+                <a class="navbar-brand" href="{% url 'message-create' user.id %}">
+                    <img src="https://static.thenounproject.com/png/3553333-200.png" alt="" width="30">
+                </a>
+            </span> -->
+        </form>
+        <!-- <span class="input-group-text" id="basic-addon2">
+            <a class="navbar-brand" href="{% url 'message-create' user.id %}">
+                <img src="https://cdn-icons-png.flaticon.com/512/3507/3507232.png" alt="" width="30">
+            </a>
+        </span> -->
+    </div>
+{% endblock %}
