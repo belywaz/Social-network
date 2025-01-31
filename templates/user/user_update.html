@@ -8,7 +8,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Оновити</button>
-        <a href="/" class="btn btn-secondary">Назад</a>
+        <a href="{% url 'user-account' user.id %}" class="btn btn-secondary">Назад</a>
     </form>
 </div>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for subscriber in subscribers %}
+        <div class="row g-0 bg-body-secondary position-relative">
+            <div class="col-md-6 p-4 ps-md-0">
+            <img src="/media/{{ subscriber.subscriber.photo }}" alt="Subscriber Photo" class="rounded-circle" style="width: 50px; height: 50px; margin-right: 10px;">
+            <h5 class="alert-heading"><a href="{% url 'message-list' subscriber.subscriber.id %}" class="btn btn-light">{{subscriber.subscriber.username}}</a></h5>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

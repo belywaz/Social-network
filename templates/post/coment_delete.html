@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Видалити коментар</h2>
+    <p>Ви впевнені, що хочете видалити коментар?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-danger">Так, видалити</button>
+        <a href="/" class="btn btn-secondary">Ні, повернутися назад</a>
+    </form>
+</div>
+{% endblock %}

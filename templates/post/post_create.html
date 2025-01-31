@@ -3,7 +3,7 @@
 {% block content %}
 <div class="conteiner mt-3">
     <h2>{{ view.post }}</h2>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Зберегти" class="btn btn-success">

@@ -17,30 +17,24 @@
             <a class="navbar-brand" href="/">
                 <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTExL3YxMTgxLXR1LWVsZW1lbnQtMjUwLXgtbTN3cTNoaHAuanBn.jpg" alt="" width="30">
             </a>
-            <a class="navbar-brand" href="#">Hidden brand</a>
+            <a class="navbar-brand" href="{% url 'post-all' %}">
+              <img src="https://seeklogo.com/images/G/globe-logo-42DE548AC7-seeklogo.com.png" alt="" width="30">
+            </a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <a class="navbar-brand" href="{% url 'subscribers-list' %}">
+              <img src="https://static-00.iconduck.com/assets.00/message-icon-512x463-tqzmxrt7.png" alt="" width="30">
+            </a>
             <a class="navbar-brand" href="{% url 'user-account' user.id %}">
               <img src="https://cdn-icons-png.flaticon.com/512/6386/6386976.png" alt="" width="30">
             </a>
           </div>
         </div>
       </nav>
+    <main class="container">
     {% block content %}
     {% endblock %}
+    </main>
     <footer>
         <div class="footer">
             </p> 2024 © Всі права захищені</p>

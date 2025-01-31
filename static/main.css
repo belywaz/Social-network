@@ -14,3 +14,28 @@ footer {
 .img_account {
     width: 150px;
 }
+
+.img_account_mes {
+    width: 50px;
+}
+
+.otdel {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.otdel_com {
+    margin-bottom: 30px;
+}
+
+.message-right {
+    text-align: right;
+}
+
+.message-left {
+    text-align: left;
+}
+
+.rounded-circle {
+    border-radius: 50%;
+}
